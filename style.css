@@ -1,0 +1,73 @@
+body {
+    background-color: #add8e6; /* Голубий фон */
+    margin: 0;
+    font-family: Arial, sans-serif; /* Встановлення шрифту */
+}
+
+.container {
+    display: flex;
+    justify-content: center; /* Вирівнювання по центру */
+    align-items: center; /* Вирівнювання по центру */
+    min-height: 100vh; /* Мінімальна висота вікна браузера */
+}
+
+.form-wrapper {
+    width: 50%; /* Ширина форми */
+    background-color: #ffffff; /* Фон форми */
+    padding: 20px;
+    border-radius: 10px; /* Закруглені кути */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тінь */
+}
+
+h2 {
+    text-align: center;
+    margin-top: 0; /* Відступ зверху */
+}
+
+fieldset {
+    font-weight: bold;
+    border: 1px solid #f8f8f8; /* Рамка */
+    border-radius: 5px; /* Закруглені кути */
+    padding: 10px;
+    background-color: #f8f8f8; /* Темніший фон */
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px; /* Відступ знизу */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+select,
+textarea {
+    width: calc(100% - 16px); /* Враховуємо внутрішні відступи */
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px; /* Відступ знизу */
+}
+
+input[type="range"] {
+    width: calc(100% - 16px); /* Враховуємо внутрішні відступи */
+    margin-top: 5px;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block; /* Показуємо блоком, щоб був відступ знизу */
+    margin: 0 auto; /* Вирівнюємо по центру */
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
