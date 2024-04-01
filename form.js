@@ -27,5 +27,4 @@ document.getElementById("surveyForm").addEventListener("submit", function(event)
     // Очищаємо дані введені користувачем з форми
     this.reset();
     
-    // Додайте будь-яке додаткове повідомлення або логіку, якщо потрібно
 });

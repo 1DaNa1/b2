@@ -44,7 +44,7 @@ input[type="tel"],
 input[type="number"],
 select,
 textarea {
-    width: calc(100% - 16px); /* Враховуємо внутрішні відступи */
+    width: calc(100% - 16px); /* внутрішні відступи */
     padding: 8px;
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -52,7 +52,7 @@ textarea {
 }
 
 input[type="range"] {
-    width: calc(100% - 16px); /* Враховуємо внутрішні відступи */
+    width: calc(100% - 16px); /* внутрішні відступи */
     margin-top: 5px;
 }
 
@@ -64,7 +64,7 @@ input[type="submit"] {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    display: block; /* Показуємо блоком, щоб був відступ знизу */
+    display: block; /*  щоб був відступ знизу */
     margin: 0 auto; /* Вирівнюємо по центру */
 }
 
