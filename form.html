@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Форма опитування</title>
+</head>
+<body>
+
+<h2>Опитування</h2>
+
+<form>
+    <label for="fullname">1. Напишіть ПІБ:</label><br>
+    <input type="text" id="fullname" name="fullname" required><br><br>
+    
+    <label for="email">2. Напишіть пошту:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+    
+    <label for="phone">3. Введіть телефон:</label><br>
+    <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br><br>
+    
+    <label for="faculty">4. На якому факультеті ви навчаєтесь?</label><br>
+    <select id="faculty" name="faculty">
+        <option value="engineering">Інженерний</option>
+        <option value="science">Науковий</option>
+        <option value="arts">Мистецький</option>
+        <option value="business">Бізнес</option>
+        <option value="medicine">Медичний</option>
+        <option value="law">Правничий</option>
+        <option value="social">Соціальний</option>
+        <option value="computer_science">Комп'ютерні науки</option>
+        <option value="languages">Мовознавство</option>
+        <option value="history">Історичний</option>
+        <option value="architecture">Архітектурний</option>
+        <option value="psychology">Психологічний</option>
+    </select><br><br>
+    
+    <fieldset>
+        <legend>5. Виберіть потік на якому ви навчаєтесь:</legend>
+        <input type="radio" id="stream1" name="stream" value="stream1">
+        <label for="stream1">Потік 1</label><br>
+        <input type="radio" id="stream2" name="stream" value="stream2">
+        <label for="stream2">Потік 2</label><br>
+        <input type="radio" id="stream3" name="stream" value="stream3">
+        <label for="stream3">Потік 3</label><br>
+    </fieldset><br>
+    
+    <label for="group">6. Вкажіть групу, де навчаєтеся:</label><br>
+    <input type="number" id="group" name="group" required><br><br>
+    
+    <label>7. Вкажіть куратора:</label><br>
+    <input type="checkbox" id="curator1" name="curator" value="curator1">
+    <label for="curator1">Куратор 1</label><br>
+    <input type="checkbox" id="curator2" name="curator" value="curator2">
+    <label for="curator2">Куратор 2</label><br>
+    <input type="checkbox" id="curator3" name="curator" value="curator3">
+    <label for="curator3">Куратор 3</label><br>
+    <input type="checkbox" id="curator4" name="curator" value="curator4">
+    <label for="curator4">Куратор 4</label><br>
+    <input type="checkbox" id="curator5" name="curator" value="curator5">
+    <label for="curator5">Куратор 5</label><br><br>
+    
+    <label for="grade">8. Вкажіть середній бал:</label><br>
+    <input type="range" id="grade" name="grade" min="1" max="100" oninput="document.getElementById('gradeValue').innerText = this.value">
+    <span id="gradeValue">50</span><br><br>
+    
+    <label for="meeting-time">9. Виберіть зручний час для проходження співбесіди:</label><br>
+    <input type="datetime-local" id="meeting-time" name="meeting-time"><br><br>
+    
+    <label for="student-id">10. Прікріпіть студентський:</label><br>
+    <input type="file" id="student-id" name="student-id"><br><br>
+    
+    <input type="submit" value="Відправити">
+</form>
+
+</body>
+</html>
