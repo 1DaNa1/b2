@@ -1,0 +1,82 @@
+{
+  "testName": "Тест з історії України",
+  "questions": [
+    {
+      "question": "Коли було хрещено Русь?",
+      "type": "singleChoice",
+      "answers": [
+        {
+          "answer": "988 р.",
+          "isCorrect": true
+        },
+        {
+          "answer": "1054 р.",
+          "isCorrect": false
+        },
+        {
+          "answer": "1187 р.",
+          "isCorrect": false
+        },
+        {
+          "answer": "1240 р.",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "Виберіть гетьманів Лівобережної України",
+      "type": "multipleChoice",
+      "answers": [
+        {
+          "answer": "Іван Мазепа",
+          "isCorrect": true
+        },
+        {
+          "answer": "Петро Дорошенко",
+          "isCorrect": false
+        },
+        {
+          "answer": "Данило Апостол",
+          "isCorrect": true
+        },
+        {
+          "answer": "Петро Конашевич-Сагайдачний",
+          "isCorrect": false
+        }
+      ]
+    },
+   
+    {
+      "question": "Напишіть рік проголошення Акту Злуки Української Народної Республіки та Західно-Української Народної Республіки",
+      "type": "inputText",
+      "isCorrect":"1919" 
+    },
+    {
+      "question": "Який князь загинув від свого коня?",
+      "type": "singleChoice",
+      "answers": [
+        {
+          "answer": "Олег",
+          "isCorrect": true
+        },
+        {
+          "answer": "Володимир",
+          "isCorrect": false
+        },
+        {
+          "answer": "Ігор",
+          "isCorrect": false
+        },
+        {
+          "answer": "Святослав",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "Напишіть рік відновлення незалежності України",
+      "type": "inputText",
+      "isCorrect":"1991" 
+    }
+  ]
+}
