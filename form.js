@@ -1,3 +1,34 @@
+// Функція для отримання даних опитування з LocalStorage
+function getSurveyData() {
+    return JSON.parse(localStorage.getItem('formEntries'))  ;
+}
+
+// Функція для фільтрування даних за факультетом "Медичний"
+function filterByFacultyMedical(entry) {
+    return entry.faculty === "medicine";
+}
+
+// Функція для фільтрування даних за потоком "Потік 3"
+function filterByStream3(entry) {
+    return entry.stream === "stream3";
+}
+
+// Функція для фільтрування даних за середнім балом більше 65
+function filterByGradeAbove65(entry) {
+    return entry.grade > 65;
+}
+
+// Функція для фільтрації даних і виведення результатів
+function filterAndDisplay(filterCriteria) {
+    let formEntries = getSurveyData();
+
+    let filteredEntries = formEntries.filter(function(entry) {
+        return filterCriteria(entry);
+    });
+
+    console.log(filteredEntries); 
+}
+
 // Додавання обробника події "submit" до форми
 document.getElementById("surveyForm").addEventListener("submit", function(event) {
     event.preventDefault(); // Забороняємо формі надсилати дані стандартним шляхом
@@ -37,5 +68,13 @@ function saveFormData() {
     // Виведення повідомлення про успішне збереження
     alert("Відповідь збережено");
 
+    // Викликання функції фільтрації та виведення результатів
+    console.log("Фільтрування за факультетом 'Медичний':");
+    filterAndDisplay(filterByFacultyMedical);
     
+    console.log("Фільтрування за потоком 'Потік 3':");
+    filterAndDisplay(filterByStream3);
+    
+    console.log("Фільтрування за середнім балом вище 65:");
+    filterAndDisplay(filterByGradeAbove65);
 };
