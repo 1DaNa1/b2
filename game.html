@@ -80,6 +80,7 @@
 
         var snake;
         var fruit;
+        var obstacle; //  об'єкт-перешкода
         var blockSize = 10;
 
         var score = 0; 
@@ -91,6 +92,7 @@
             ctx = canvas.getContext("2d");
             snake = new Snake();
             fruit = new Fruit();
+            obstacle = new Obstacle(); // Ініціалізація об'єкту-перешкоди
             scoreDisplay = document.getElementById("scoreDisplay");
             drawGame();
         }
@@ -100,6 +102,7 @@
             drawWalls();
             fruit.draw();
             snake.draw();
+            obstacle.draw(); // Відображення об'єкту-перешкоди
             scoreDisplay.innerHTML = "Score: " + score; // Відображення кількості балів
         }
 
@@ -115,6 +118,10 @@
                 fruit = new Fruit();
                 score++;
             }
+
+            if (snake.collideWith(obstacle)) {
+                score--; // Зменшення балів при зіткненні з перешкодою
+            }
         }
 
         function drawWalls() {
@@ -125,7 +132,6 @@
             ctx.fillRect(canvas.width - blockSize, 0, blockSize, canvas.height);
         }
 
-
         function Fruit() {
             this.x = Math.floor(Math.random() * (canvas.width / blockSize - 2) + 1) * blockSize;
             this.y = Math.floor(Math.random() * (canvas.height / blockSize - 2) + 1) * blockSize;
@@ -133,6 +139,19 @@
             this.draw = function () {
                 ctx.fillStyle = "red";
                 ctx.fillRect(this.x, this.y, blockSize, blockSize);
+            }
+        }
+
+        function Obstacle() {
+            this.x = Math.floor(Math.random() * (canvas.width / blockSize - 2) + 1) * blockSize;
+            this.y = Math.floor(Math.random() * (canvas.height / blockSize - 2) + 1) * blockSize;
+            this.radius = blockSize; // Радіус  перешкоди
+
+            this.draw = function () {
+                ctx.fillStyle = "blue";
+                ctx.beginPath();
+                ctx.arc(this.x + this.radius, this.y + this.radius, this.radius, 0, Math.PI * 2);
+                ctx.fill();
             }
         }
 
@@ -178,6 +197,14 @@
                 return false;
             }
 
+            this.collideWith = function (object) {
+                //  перевірка, чи знаходиться голова змійки в межах кола перешкоди
+                var dx = this.x - object.x - object.radius;
+                var dy = this.y - object.y - object.radius;
+                var distance = Math.sqrt(dx * dx + dy * dy);
+                return distance < object.radius + blockSize / 2;
+            }
+
             this.checkCollision = function () {
                 for (var i = 0; i < this.tail.length; i++) {
                     if (this.x === this.tail[i].x && this.y === this.tail[i].y) {
@@ -220,18 +247,11 @@
             snake.changeDirection(1, 0);
         }
 
-        function updateScore() {
-            score++;
-            myScore.text = "SCORE: " + score;
-            myScore.update();
-        }
-
-
         function restartGame() {
             clearInterval(interval);
             document.getElementById("restartButton").style.display = "none";
             isGameRunning = false;
-            score = 0; // обнуляє кількість балів gри перезапуску гри
+            score = 0; // обнуляє кількість балів гри при перезапуску гри
             startGame();
         }
 
