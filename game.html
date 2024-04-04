@@ -35,18 +35,41 @@
             transform: translate(-50%, -50%);
             display: none;
         }
+
+        #scoreDisplay {
+            position: absolute;
+            top: 2px;
+            left: 10px;
+            font-family: Consolas;
+        }
+
+        #leaderboard {
+            position: absolute;
+            top: 30px; 
+            left: 300px; 
+            font-family: Consolas;
+        }
     </style>
 </head>
 <body onload="startGame()">
     <div id="gameArea">
         <canvas id="gameCanvas" width="300" height="300"></canvas>
         <button id="restartButton" onclick="restartGame()">RESTART</button>
+        <div id="scoreDisplay"></div> <!-- Відображення кількості набраних балів -->
     </div>
     <div class="button-container">
         <button onclick="moveUp()">UP</button>
         <button onclick="moveDown()">DOWN</button>
         <button onclick="moveLeft()">LEFT</button>
         <button onclick="moveRight()">RIGHT</button>
+    </div>
+    <!-- Відображення списку лідерів -->
+    <div id="leaderboard">
+        <h2>Results:</h2> 
+        <h3>The best:</h3> 
+        <ol id="bestScores"></ol> 
+        <h3>The worst:</h3> 
+        <ol id="worstScores"></ol> 
     </div>
 
     <script>
@@ -59,11 +82,16 @@
         var fruit;
         var blockSize = 10;
 
+        var score = 0; 
+        var scoreDisplay;
+        var leaderboard = [];
+
         function startGame() {
             canvas = document.getElementById("gameCanvas");
             ctx = canvas.getContext("2d");
             snake = new Snake();
             fruit = new Fruit();
+            scoreDisplay = document.getElementById("scoreDisplay");
             drawGame();
         }
 
@@ -72,6 +100,7 @@
             drawWalls();
             fruit.draw();
             snake.draw();
+            scoreDisplay.innerHTML = "Score: " + score; // Відображення кількості балів
         }
 
         function updateGameArea() {
@@ -79,10 +108,12 @@
             if (snake.update()) {
                 clearInterval(interval);
                 document.getElementById("restartButton").style.display = "inline";
+                updateLeaderboard(); // Оновлення списку лідерів при завершенні гри
             }
 
             if (snake.eat(fruit)) {
                 fruit = new Fruit();
+                score++;
             }
         }
 
@@ -93,6 +124,7 @@
             ctx.fillRect(0, canvas.height - blockSize, canvas.width, blockSize);
             ctx.fillRect(canvas.width - blockSize, 0, blockSize, canvas.height);
         }
+
 
         function Fruit() {
             this.x = Math.floor(Math.random() * (canvas.width / blockSize - 2) + 1) * blockSize;
@@ -105,7 +137,7 @@
         }
 
         function Snake() {
-            this.x = canvas.width / 2; //  початкове положення змійки по центру
+            this.x = canvas.width / 2; 
             this.y = canvas.height / 2;
             this.speedX = 0;
             this.speedY = 0;
@@ -120,7 +152,7 @@
                 this.x += this.speedX;
                 this.y += this.speedY;
 
-                if (this.x >= canvas.width || this.x < 0 || this.y >= canvas.height || this.y < 0) {
+                if (this.x >= canvas.width || this.x < 0 || this.y >= canvas.height || this.y < 0 || this.checkCollision()) {
                     return true;
                 }
             }
@@ -188,11 +220,53 @@
             snake.changeDirection(1, 0);
         }
 
+        function updateScore() {
+            score++;
+            myScore.text = "SCORE: " + score;
+            myScore.update();
+        }
+
+
         function restartGame() {
             clearInterval(interval);
             document.getElementById("restartButton").style.display = "none";
             isGameRunning = false;
+            score = 0; // обнуляє кількість балів gри перезапуску гри
             startGame();
+        }
+
+        // Функція для оновлення списку лідерів
+        function updateLeaderboard() {
+           
+            leaderboard.push(score);
+
+            // Сортування  у спадному порядку
+            leaderboard.sort(function(a, b) {
+                return b - a;
+            });
+
+            // лише перші 3 найкращі результати
+            var best3 = leaderboard.slice(0, 3);
+
+            // лише перші 3 найгірших результати
+            var worst3 = leaderboard.slice(-3).reverse();
+
+            // Відображення список лідерів на сторінці
+            var bestScores = document.getElementById("bestScores");
+            bestScores.innerHTML = ""; // Очищає попередні дані
+            best3.forEach(function(score, index) {
+                var li = document.createElement("li");
+                li.textContent = score;
+                bestScores.appendChild(li);
+            });
+
+            var worstScores = document.getElementById("worstScores");
+            worstScores.innerHTML = ""; // Очищає попередні дані
+            worst3.forEach(function(score, index) {
+                var li = document.createElement("li");
+                li.textContent = score;
+                worstScores.appendChild(li);
+            });
         }
 
         startGame();
